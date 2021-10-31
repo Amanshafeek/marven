@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:snapchat_ui/chatpage/chat_users.dart';
 import 'package:snapchat_ui/chatpage/chat.dart';
-import 'package:snapchat_ui/network/no_internet.dart';
+import 'package:snapchat_ui/appbar.dart';
+import 'package:snapchat_ui/appbar.dart';
 
 class ChatPage extends StatefulWidget{
   @override
@@ -25,8 +27,7 @@ class _ChatPageState extends State<ChatPage> {
     return Scaffold(
 
       backgroundColor: Color(0xff23232E),
-      appBar: AppBar(
-      ),
+      appBar:CustomAppBar(),
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
         child: Column(

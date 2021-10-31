@@ -4,9 +4,9 @@
 
 import 'package:flutter/material.dart';
 
-void main() => runApp(Mode());
+void main() => runApp(Modes());
 
-class Mode extends StatelessWidget {
+class Modes extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -15,22 +15,8 @@ class Mode extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Welcome to Flutter'),
         ),
-        body: GestureDetector(
-          onTap: (){},
-          child: Padding(
-            padding: const EdgeInsets.only(left: 10,top: 10),
-            child: SizedBox(
-              width: 370,
-              height: 150,
-              child: OutlineButton(
-                borderSide:BorderSide(
-                  width: 2
-                ),
-                color: Colors.blueGrey,
-                onPressed: (){},
-              ),
-            ),
-          ),
+        body: const Center(
+          child: Text('Hello World'),
         ),
       ),
     );

@@ -30,6 +30,7 @@ class _PhonelogsScreenState extends State<PhonelogsScreen> with  WidgetsBindingO
     super.dispose();
   }
 
+
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     // TODO: implement didChangeAppLifecycleState

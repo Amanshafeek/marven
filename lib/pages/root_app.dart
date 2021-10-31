@@ -21,7 +21,7 @@ class _RootAppState extends State<RootApp> {
     ChatPage(),
     PhonelogsScreen(),
     FeedScreen(),
-    Mode(),
+    Modes(),
     SettingsPage(),
   ];
 

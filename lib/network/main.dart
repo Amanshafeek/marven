@@ -34,9 +34,9 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      elevation: 10,
+      backgroundColor: Color(0xff23232E),
       title: GetBuilder<GetXNetworkManager>(builder: (builder)=>
-          Text((_networkManager.connectionType == 0 )? 'No Internet' : (_networkManager.connectionType == 1) ? 'You are Connected to Wifi' : 'You are Connected to Mobile Internet',style: TextStyle(fontSize: 30),)),
-    );
+          Text((_networkManager.connectionType == 0 )? 'Offline Mode Enabled' : (_networkManager.connectionType == 1) ? 'Offline Mode Disabled' : 'Offline Mode Disabled',style: TextStyle(fontSize: 34,fontFamily: 'Bebas',letterSpacing: 2,color: Colors.white)),
+    ));
   }
 }

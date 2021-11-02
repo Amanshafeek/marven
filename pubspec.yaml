@@ -52,7 +52,6 @@ dependencies:
   get:
   overlay_support: 1.2.1
   google_fonts: ^2.1.0
-  settings_ui: ^0.7.0
 
 
 

@@ -1,7 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'chat_users.dart';
+
 class ChatDetailPageAppBar extends StatelessWidget implements PreferredSizeWidget{
+
+
+  final ChatUsers User;
+
+  const ChatDetailPageAppBar({Key key, this.User}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -30,9 +38,9 @@ class ChatDetailPageAppBar extends StatelessWidget implements PreferredSizeWidge
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Text("Jane Russel",style: TextStyle(fontWeight: FontWeight.w600),),
+                    Text(User.name,style: TextStyle(fontWeight: FontWeight.w600),),
                     SizedBox(height: 6,),
-                    Text("Online",style: TextStyle(color: Colors.green,fontSize: 12),),
+                    Text(User.status,style: TextStyle(color: Colors.green,fontSize: 12),),
                   ],
                 ),
               ),

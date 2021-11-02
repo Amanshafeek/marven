@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:snapchat_ui/chatpage/chat_detail_page.dart';
+import 'package:snapchat_ui/chatpage/chat_users.dart';
 
-class ChatUsersList extends StatefulWidget{
+class ChatUsersList extends StatefulWidget {
   String text;
   String secondaryText;
   String image;
   String time;
   bool isMessageRead;
-  ChatUsersList({@required this.text,@required this.secondaryText,@required this.image,@required this.time,@required this.isMessageRead});
+  ChatUsersList(
+      {@required this.text,
+      @required this.secondaryText,
+      @required this.image,
+      @required this.time,
+      @required this.isMessageRead});
   @override
   _ChatUsersListState createState() => _ChatUsersListState();
 }
@@ -16,13 +22,17 @@ class _ChatUsersListState extends State<ChatUsersList> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
-        Navigator.push(context, MaterialPageRoute(builder: (context){
-          return ChatDetailPage();
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return ChatDetailPage(ChatUsers(
+              name: widget.text,
+              status: widget.secondaryText,
+              image: widget.image,
+              time: widget.time));
         }));
       },
       child: Container(
-        padding: EdgeInsets.only(left: 16,right: 16,top: 10,bottom: 10),
+        padding: EdgeInsets.only(left: 16, right: 16, top: 10, bottom: 10),
         child: Row(
           children: <Widget>[
             Expanded(
@@ -32,7 +42,9 @@ class _ChatUsersListState extends State<ChatUsersList> {
                     backgroundImage: AssetImage(widget.image),
                     radius: 34,
                   ),
-                  SizedBox(width: 16,),
+                  SizedBox(
+                    width: 16,
+                  ),
                   Expanded(
                     child: Container(
                       color: Colors.transparent,
@@ -40,8 +52,14 @@ class _ChatUsersListState extends State<ChatUsersList> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(widget.text),
-                          SizedBox(height: 6,),
-                          Text(widget.secondaryText,style: TextStyle(fontSize: 14,color: Colors.grey.shade500),),
+                          SizedBox(
+                            height: 6,
+                          ),
+                          Text(
+                            widget.secondaryText,
+                            style: TextStyle(
+                                fontSize: 14, color: Colors.grey.shade500),
+                          ),
                         ],
                       ),
                     ),
@@ -49,7 +67,14 @@ class _ChatUsersListState extends State<ChatUsersList> {
                 ],
               ),
             ),
-            Text(widget.time,style: TextStyle(fontSize: 12,color: widget.isMessageRead?Colors.pink:Colors.grey.shade500),),
+            Text(
+              widget.time,
+              style: TextStyle(
+                  fontSize: 12,
+                  color: widget.isMessageRead
+                      ? Colors.pink
+                      : Colors.grey.shade500),
+            ),
           ],
         ),
       ),

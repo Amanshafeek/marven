@@ -10,8 +10,9 @@ class FeedScreen extends StatefulWidget {
 class _FeedScreenState extends State<FeedScreen> {
   Widget _buildPost(int index) {
     return Container(
+      color: Colors.black,
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+        padding: EdgeInsets.symmetric(horizontal:10.0, vertical: 10.0),
         child: Container(
           width: 120,
           height: 560.0,
@@ -43,7 +44,7 @@ class _FeedScreenState extends State<FeedScreen> {
                             child: Image(
                               height: 50.0,
                               width: 50.0,
-                              image: AssetImage(posts[index].authorImageUrl),
+                              image: NetworkImage("https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/silicon-valley-season-3-jimmy-o-yang-1591792918.jpg?crop=0.656xw:0.984xh;0.202xw,0.00779xh&resize=480:*"),
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -75,7 +76,7 @@ class _FeedScreenState extends State<FeedScreen> {
                         );
                       },
                       child: Container(
-                        margin: EdgeInsets.all(10.0),
+                        margin: EdgeInsets.all(0.0),
                         width: double.infinity,
                         height: 400.0,
                         decoration: BoxDecoration(
@@ -102,6 +103,7 @@ class _FeedScreenState extends State<FeedScreen> {
                                   IconButton(
                                     icon: Icon(Icons.favorite_border),
                                     iconSize: 30.0,
+                                    color: Colors.white,
                                     onPressed: () => print('Like post'),
                                   ),
                                   Text(
@@ -109,6 +111,7 @@ class _FeedScreenState extends State<FeedScreen> {
                                     style: TextStyle(
                                       fontSize: 14.0,
                                       fontWeight: FontWeight.w600,
+                                      color: Colors.white
                                     ),
                                   ),
                                 ],
@@ -119,6 +122,7 @@ class _FeedScreenState extends State<FeedScreen> {
                                   IconButton(
                                     icon: Icon(Icons.chat),
                                     iconSize: 30.0,
+                                    color: Colors.white,
                                     onPressed: () {
                                       Navigator.push(
                                         context,
@@ -135,6 +139,7 @@ class _FeedScreenState extends State<FeedScreen> {
                                     style: TextStyle(
                                       fontSize: 14.0,
                                       fontWeight: FontWeight.w600,
+                                      color: Colors.white
                                     ),
                                   ),
                                 ],
@@ -171,31 +176,7 @@ class _FeedScreenState extends State<FeedScreen> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Text(
-                  'Instagram',
-                  style: TextStyle(
-                    fontFamily: 'Billabong',
-                    fontSize: 32.0,
-                  ),
-                ),
-                Row(
-                  children: <Widget>[
-                    IconButton(
-                      icon: Icon(Icons.live_tv),
-                      iconSize: 30.0,
-                      onPressed: () => print('IGTV'),
-                    ),
-                    SizedBox(width: 16.0),
-                    Container(
-                      width: 35.0,
-                      child: IconButton(
-                        icon: Icon(Icons.send),
-                        iconSize: 30.0,
-                        onPressed: () => print('Direct Messages'),
-                      ),
-                    )
-                  ],
-                )
+
               ],
             ),
           ),

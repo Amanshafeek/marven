@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:snapchat_ui/chatpage/chat_bubble.dart';
 import 'package:snapchat_ui/chatpage/chat_detail_page_appbar.dart';
+import 'package:snapchat_ui/chatpage/chat_users.dart';
 import 'package:snapchat_ui/chatpage/send_menu_items.dart';
 import 'package:snapchat_ui/chatpage/chat_message.dart';
 
@@ -12,6 +13,8 @@ enum MessageType{
 
 
 class ChatDetailPage extends StatefulWidget{
+  final ChatUsers chatUser;
+  ChatDetailPage(this.chatUser);
   @override
   _ChatDetailPageState createState() => _ChatDetailPageState();
 }
@@ -89,7 +92,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: ChatDetailPageAppBar(),
+      appBar: ChatDetailPageAppBar(User: widget.chatUser,),
       body: Stack(
         children: <Widget>[
           ListView.builder(

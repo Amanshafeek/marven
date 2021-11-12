@@ -23,7 +23,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
   List<ChatMessage> chatMessage = [
     ChatMessage(message: "Hi John", type: MessageType.Receiver),
     ChatMessage(message: "Hope you are doin good", type: MessageType.Receiver),
-    ChatMessage(message: "Hello Jane, I'm good what about you", type: MessageType.Sender),
+    ChatMessage(message: "Hello Jane, I'm good what about -you", type: MessageType.Sender),
     ChatMessage(message: "I'm fine, Working from home", type: MessageType.Receiver),
     ChatMessage(message: "Oh! Nice. Same here man", type: MessageType.Sender),
   ];

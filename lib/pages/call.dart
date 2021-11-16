@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:call_log/call_log.dart';
+import 'package:flutter/rendering.dart';
+import 'package:path/path.dart';
 import 'package:snapchat_ui/call/phone_textfield.dart';
 import 'package:snapchat_ui/call/callLogs.dart';
 
@@ -47,7 +49,10 @@ class _PhonelogsScreenState extends State<PhonelogsScreen> with  WidgetsBindingO
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff23232E),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.black,
+      ),
+      backgroundColor: Colors.white,
       appBar: AppBar(title: Text("Phone"),),
       body: Column(
         children: [
@@ -59,16 +64,14 @@ class _PhonelogsScreenState extends State<PhonelogsScreen> with  WidgetsBindingO
               return Expanded(
                 child: ListView.builder(itemBuilder: (context, index){
 
-                  return GestureDetector( child: Card(
-                    child: ListTile(
-                      leading: cl.getAvator(entries.elementAt(index).callType),
-                      title: cl.getTitle(entries.elementAt(index)),
-                      subtitle: Text(cl.formatDate(new DateTime.fromMillisecondsSinceEpoch(entries.elementAt(index).timestamp)) + "\n" + cl.getTime(entries.elementAt(index).duration)),
-                      isThreeLine: true,
-                      trailing: IconButton(icon: Icon(Icons.phone), color: Colors.green, onPressed: (){
-                        cl.call(entries.elementAt(index).number);
-                      }),
-                    ),
+                  return GestureDetector( child: ListTile(
+                    leading: cl.getAvator(entries.elementAt(index).callType),
+                    title: cl.getTitle(entries.elementAt(index)),
+                    subtitle: Text(cl.formatDate(new DateTime.fromMillisecondsSinceEpoch(entries.elementAt(index).timestamp)) + "\n" + cl.getTime(entries.elementAt(index).duration,)),
+                    isThreeLine: true,
+                    trailing: IconButton(icon: Icon(Icons.phone), color: Colors.green, onPressed: (){
+                      cl.call(entries.elementAt(index).number);
+                    }),
                   ), onLongPress: () => pt.update(entries.elementAt(index).number.toString()),
                   );
                 }, itemCount: entries.length,

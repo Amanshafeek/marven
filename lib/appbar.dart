@@ -7,7 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 
 class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
-  CustomAppBar({Key key}) : preferredSize = Size.fromHeight(84), super(key: key);
+  CustomAppBar({Key key}) : preferredSize = Size.fromHeight(80), super(key: key);
 
   @override
   final Size preferredSize; // default is 56.0

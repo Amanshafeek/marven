@@ -18,6 +18,7 @@ class ChatDetailPageAppBar extends StatelessWidget implements PreferredSizeWidge
       backgroundColor: Colors.white,
       flexibleSpace: SafeArea(
         child: Container(
+          color: Color(0xff23232E),
           padding: EdgeInsets.only(right: 16),
           child: Row(
             children: <Widget>[

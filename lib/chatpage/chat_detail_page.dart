@@ -92,6 +92,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xff23232E),
       appBar: ChatDetailPageAppBar(User: widget.chatUser,),
       body: Stack(
         children: <Widget>[
@@ -112,7 +113,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
               padding: EdgeInsets.only(left: 16,bottom: 10),
               height: 80,
               width: double.infinity,
-              color: Colors.white,
+              color: Color(0xff23232E),
               child: Row(
                 children: <Widget>[
                   GestureDetector(

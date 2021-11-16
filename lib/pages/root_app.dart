@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:snapchat_ui/Community/screens/feed_screen.dart';
 import 'package:snapchat_ui/pages/modes.dart';
-import 'package:snapchat_ui/pages/Community.dart';
 import 'package:snapchat_ui/pages/chat_page.dart';
 import 'package:snapchat_ui/pages/call.dart';
 import 'package:snapchat_ui/pages/stories_page.dart';
@@ -20,7 +18,6 @@ class _RootAppState extends State<RootApp> {
   List<Widget> pages = [
     ChatPage(),
     PhonelogsScreen(),
-    FeedScreen(),
     Modes(),
     SettingsPage(),
   ];
@@ -57,11 +54,10 @@ class _RootAppState extends State<RootApp> {
     List iconItems = [
       Feather.map_pin,
       MaterialIcons.chat_bubble_outline,
-      Feather.camera,
       Feather.users,
       Feather.activity
     ];
-    List textItems = ["chat", "Call", "Community", "Modes", "Profile"];
+    List textItems = ["chat", "Call", "Modes", "Profile"];
     List colorItems = [
       green,
       blue,
@@ -70,8 +66,6 @@ class _RootAppState extends State<RootApp> {
       primary,
     ];
     return Container(
-
-
       height: 58,
       width: 40,
       decoration: BoxDecoration(
@@ -80,7 +74,7 @@ class _RootAppState extends State<RootApp> {
       ),
       child: Padding(
         padding:
-        const EdgeInsets.only(left: 20, right: 20, bottom: 10, top: 10),
+        const EdgeInsets.only(left: 28, right: 20, bottom: 10, top: 10),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

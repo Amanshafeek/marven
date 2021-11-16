@@ -65,8 +65,9 @@ class _MyHomePageState extends State<MyHomePage> {
               Padding(
                 padding: const EdgeInsets.only(right:66),
                 child: AnimatedTextKit(
+                  repeatForever: true,
                   animatedTexts:[ RotateAnimatedText((_networkManager.connectionType == 0 )? 'Offline Mode Enabled' :
-                  (_networkManager.connectionType == 1) ? 'Offline Mode Disabled' : 'Offline Mode Disabled', textStyle:TextStyle(fontSize: 25,fontFamily: 'Bebas',letterSpacing: 2,color: Colors.white,)
+                  (_networkManager.connectionType == 1) ? 'Offline Mode Disabled' : 'Offline Mode Disabled', textStyle:TextStyle(fontSize: 29,fontFamily: 'Bebas',letterSpacing: 2,color: Colors.white,)
                   ),
                 ]),
               ),

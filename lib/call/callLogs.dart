@@ -13,7 +13,7 @@ import 'package:intl/intl.dart';
   getAvator(CallType callType){
     switch(callType){
       case CallType.outgoing:
-        return CircleAvatar(maxRadius: 30, foregroundColor: Colors.green, backgroundColor: Colors.greenAccent,);
+        return CircleAvatar(maxRadius: 30, foregroundColor: Colors.black, backgroundColor: Colors.black12,);
       case CallType.missed:
         return CircleAvatar(maxRadius: 30, foregroundColor: Colors.red[400], backgroundColor: Colors.red[400],);
       default:
@@ -32,7 +32,7 @@ import 'package:intl/intl.dart';
   getTitle(CallLogEntry entry){
 
     if(entry.name == null)
-      return Text(entry.number);
+      return Text(entry.number,);
     if(entry.name.isEmpty)
       return Text(entry.number);
     else

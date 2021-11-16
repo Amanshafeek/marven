@@ -1,142 +1,75 @@
+import 'dart:async';
+
+
+import 'package:agora_rtc_engine/rtc_engine.dart';
 import 'package:flutter/material.dart';
-import 'package:telephony/telephony.dart';
+import 'package:permission_handler/permission_handler.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({key}) : super(key: key);
-
+void main() => runApp(MyApp());
+/// Define App ID and Token
+const APP_ID = '8fc87ddc8afd4a12b720918d8b5fb11d';
+const Token = '<0068fc87ddc8afd4a12b720918d8b5fb11dIADtttZQMuG9nVWVR+oKXqaw+4AJzQMqCJHTmue17WP0fbABPTQAAAAAEABr21wCRPOQYQEAAQBR85Bh>';
+// App class
+class MyApp extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'SMS ',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(title: 'SMS DEMO'),
-    );
-  }
+  _MyAppState createState() => _MyAppState();
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  final Telephony telephony = Telephony.instance;
-
-  final _formKey = GlobalKey<FormState>();
-  final TextEditingController _phoneController = TextEditingController();
-  final TextEditingController _msgController = TextEditingController();
-  final TextEditingController _valueSms = TextEditingController();
-
+// App state class
+class _MyAppState extends State<MyApp> {
+  bool _joined = false;
+  int _remoteUid = 0;
+  bool _switch = false;
 
   @override
   void initState() {
     super.initState();
-    _phoneController.text = '55555';
-    _msgController.text = 'Подпишись на канал :)';
-    _valueSms.text = '10';
+    initPlatformState();
   }
 
-  @override
+  // Init the app
+  Future<void> initPlatformState() async {
+    // Get microphone permission
+    await [Permission.microphone].request();
+
+    // Create RTC client instance
+    RtcEngineContext context = RtcEngineContext(APP_ID);
+    var engine = await RtcEngine.createWithContext(context);
+    // Define event handling logic
+    engine.setEventHandler(RtcEngineEventHandler(
+        joinChannelSuccess: (String channel, int uid, int elapsed) {
+          print('joinChannelSuccess ${channel} ${uid}');
+          setState(() {
+            _joined = true;
+          });
+        }, userJoined: (int uid, int elapsed) {
+      print('userJoined ${uid}');
+      setState(() {
+        _remoteUid = uid;
+      });
+    }, userOffline: (int uid, UserOfflineReason reason) {
+      print('userOffline ${uid}');
+      setState(() {
+        _remoteUid = 0;
+      });
+    }));
+    // Join channel with channel name as 123
+    await engine.joinChannel(Token, '123', null, 0);
+  }
+
+  // Build chat UI
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Padding(
-        padding: EdgeInsets.all(8.0),
-        child: Form(
-          key: _formKey,
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextFormField(
-                    controller: _phoneController,
-                    keyboardType: TextInputType.phone,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Введите номер для отправки';
-                      }
-                      return null;
-                    },
-                    decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        hintText: 'Номер телефона',
-                        labelText: 'Номер'),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextFormField(
-                    controller: _msgController,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Введите сообщение';
-                      }
-                    },
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: 'Текст сообщения',
-                      labelText: 'Сообщение',
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextFormField(
-                    controller: _valueSms,
-                    keyboardType: TextInputType.number,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Введите количество СМС';
-                      }
-                    },
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: 'Количество сообщений',
-                      labelText: 'Количество',
-                    ),
-                  ),
-                ),
-                ElevatedButton(
-                    onPressed: () => _sendSMS(), child: const Text('Отправить СМС')),
-                ElevatedButton(onPressed: () => _getSMS(), child: const Text('Прочитать СМС')),
-              ],
-            ),
-          ),
+    return MaterialApp(
+      title: 'Agora Audio quickstart',
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Agora Audio quickstart'),
+        ),
+        body: Center(
+          child: Text('Please chat!'),
         ),
       ),
     );
   }
 
-  _sendSMS() async {
-    int _sms = 0;
-    while (_sms < int.parse(_valueSms.text)) {
-      telephony.sendSms(to: _phoneController.text, message: _msgController.text);
-      _sms ++;
-    }
-  }
-
-  _getSMS() async {
-    List<SmsMessage> _messages = await telephony.getInboxSms(
-        columns: [SmsColumn.ADDRESS, SmsColumn.BODY],
-        filter: SmsFilter.where(SmsColumn.ADDRESS).equals(_phoneController.text)
-    );
-
-    for(var msg in _messages) {
-      print(msg.body);
-    }
-  }
 }

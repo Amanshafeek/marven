@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:snapchat_ui/chatpage/chat_detail_page.dart';
 import 'package:snapchat_ui/chatpage/chat_users.dart';
 
@@ -38,12 +39,16 @@ class _ChatUsersListState extends State<ChatUsersList> {
             Expanded(
               child: Row(
                 children: <Widget>[
-                  CircleAvatar(
-                    backgroundImage: AssetImage(widget.image),
-                    radius: 34,
+                  Container(
+                    height: 67,
+                    width: 67,
+                    decoration: BoxDecoration(
+                      color: Colors.blueGrey,
+                      shape: BoxShape.rectangle
+                    ),
                   ),
                   SizedBox(
-                    width: 16,
+                    width: 18,
                   ),
                   Expanded(
                     child: Container(
@@ -51,7 +56,7 @@ class _ChatUsersListState extends State<ChatUsersList> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Text(widget.text),
+                          Text(widget.text,style: TextStyle(fontSize: 18),),
                           SizedBox(
                             height: 6,
                           ),

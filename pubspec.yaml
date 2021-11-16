@@ -54,6 +54,15 @@ dependencies:
   google_fonts: ^2.1.0
   telephony:
   flutter_sms:
+  awesome_notifications: any
+  callkeep:
+  agora_rtc_engine:
+  firebase_messaging:
+  floating_navbar: ^2.0.1
+
+
+
+
 
 
 dev_dependencies:
